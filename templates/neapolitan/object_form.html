@@ -5,11 +5,11 @@
 {% block content %}
   <div class="card mx-auto" style="max-width: 480px;">
     <div class="card-header">
-      {% if object %}{% trans 'Edit'%} {{object_verbose_name}}{% else %}{% trans 'Create'%} {{object_verbose_name}}{% endif %}
+      <h3>{% if object %}{% trans 'Edit'%} {{object_verbose_name}}{% else %}{% trans 'Create'%} {{object_verbose_name}}{% endif %}</h3>
     </div>
     <div class="card-body">
       <form method="POST" {% if form.is_multipart %}enctype="multipart/form-data" {% endif %}
-            action="{% if object %}{{ update_view_url }}{% else %}{{ create_view_url }}{% endif %}" class="dl-form">
+            action="{% if object %}{{ update_view_url }}{% else %}{{ create_view_url }}{% endif %}">
         {% csrf_token %}
         {{ form|crispy }}
         <button type="submit"
