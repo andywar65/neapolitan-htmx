@@ -5,7 +5,9 @@
   <div class="card-header">
     <h3>{{ object_verbose_name_plural|capfirst }}</h3>
     <a class="link link-success"
-       href="{{ create_view_url }}">
+       hx-get="{{ create_view_url }}"
+       hx-target="#content"
+       hx-push-url="true">
       {% trans 'Add a new'%} {{ object_verbose_name }}
     </a>
   </div>
