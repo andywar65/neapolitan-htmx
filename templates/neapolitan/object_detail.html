@@ -3,11 +3,13 @@
 
 {% block content %}
 
-
-<p>{{ object }}</p>
-
-
-{% object_detail object view.fields %}
-
+  <div class="card mx-auto" style="max-width: 960px;">
+    <div class="card-header">
+      {{ object }}
+    </div>
+    <div class="card-body">
+      {% object_detail object view.fields %}
+    </div>
+  </div>
 
 {% endblock %}
