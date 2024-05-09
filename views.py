@@ -82,7 +82,7 @@ class Role(enum.Enum):
         return path(
             self.url_pattern(view_cls),
             view_cls.as_view(role=self),
-            name=f"{view_cls.url_base}-{self.url_name_component}"
+            name=f"{view_cls.url_base}-{self.url_name_component}",
         )
 
     def reverse(self, view, object=None):
@@ -96,7 +96,6 @@ class Role(enum.Enum):
                     url_name,
                     kwargs={url_kwarg: getattr(object, view.lookup_field)},
                 )
-
 
 
 class CRUDView(View):
@@ -400,6 +399,13 @@ class CRUDView(View):
             return [self.template_name]
 
         if self.model is not None and self.template_name_suffix is not None:
+            if self.request.htmx:
+                return [
+                    f"{self.model._meta.app_label}/"
+                    f"{self.model._meta.object_name.lower()}"
+                    f"{self.template_name_suffix}.html",
+                    f"neapolitan/htmx/object{self.template_name_suffix}.html",
+                ]
             return [
                 f"{self.model._meta.app_label}/"
                 f"{self.model._meta.object_name.lower()}"
