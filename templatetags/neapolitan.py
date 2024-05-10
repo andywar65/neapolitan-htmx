@@ -1,6 +1,5 @@
 from django import template
 from django.utils.safestring import mark_safe
-
 from neapolitan.views import Role
 
 register = template.Library()
@@ -12,7 +11,11 @@ def action_links(view, object):
         (Role.UPDATE.reverse(view, object), "Edit"),
         (Role.DELETE.reverse(view, object), "Delete"),
     ]
-    links = [f"<a href='{url}'>{anchor_text}</a>" for url, anchor_text in actions]
+    links = [
+        f"<a class='link link-primary' hx-get='{url}'"
+        f"hx-target='#content' hx-push-url='true'>{anchor_text}</a>"
+        for url, anchor_text in actions
+    ]
     return mark_safe(" | ".join(links))
 
 
