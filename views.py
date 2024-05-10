@@ -371,6 +371,7 @@ class CRUDView(View):
         kwargs["object_verbose_name"] = self.model._meta.verbose_name
         kwargs["object_verbose_name_plural"] = self.model._meta.verbose_name_plural
         kwargs["create_view_url"] = reverse(f"{self.url_base}-create")
+        kwargs["list_view_url"] = reverse(f"{self.url_base}-list")
 
         if getattr(self, "object", None) is not None:
             kwargs["object"] = self.object
