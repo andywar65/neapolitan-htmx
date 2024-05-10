@@ -3,17 +3,17 @@
 
 <div class="card mx-auto" style="max-width: 480px;">
   <div class="card-body">
-    <p class="card-text">{% trans 'Are you sure you want to delete following'%} {{ object_verbose_name }}?<p>
-      <p class="card-text">{{ object }}</p>
-      <form>
-        {{ form|crispy }}
-        <button type="submit"
-                class="btn btn-danger"
-                hx-post="{{ delete_view_url }}"
-                hx-target="#content"
-                hx-push-url="true">
-          {% trans 'Delete'%}
-        </button>
-      </form>
-    </div>
-    </div>
+    <p class="card-text">{% trans 'Are you sure you want to delete following'%} {{ object_verbose_name }}?</p>
+    <p class="card-text"><strong>{{ object }}</strong></p>
+    <form>
+      {{ form|crispy }}
+      <button type="submit"
+              class="btn btn-danger"
+              hx-post="{{ delete_view_url }}"
+              hx-target="#content"
+              hx-push-url="true">
+        {% trans 'Delete'%}
+      </button>
+    </form>
+  </div>
+</div>
