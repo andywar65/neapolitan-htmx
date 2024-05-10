@@ -375,6 +375,9 @@ class CRUDView(View):
 
         if getattr(self, "object", None) is not None:
             kwargs["object"] = self.object
+            kwargs["detail_view_url"] = reverse(
+                f"{self.url_base}-detail", kwargs={"pk": self.object.id}
+            )
             context_object_name = self.get_context_object_name()
             if context_object_name:
                 kwargs[context_object_name] = self.object

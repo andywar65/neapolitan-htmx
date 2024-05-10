@@ -16,6 +16,12 @@
               hx-push-url="true">
         {% trans 'Save'%}
       </button>
+      <button class="btn-close"
+              title="{% trans 'Dismiss' %}"
+              hx-get="{% if object %}{{detail_view_url}}{% else %}{{list_view_url}}{% endif %}"
+              hx-target="#content"
+              hx-push-url="true">
+      </button>
     </form>
   </div>
 </div>
